@@ -83,11 +83,10 @@ Une pour entraîner le modèle et faire tourner MLflow
 
 ## Technologies utilisées
 ### Catégorie et Outils
- - **Infra** : Terraform  
-- **Cloud** : AWS EC2  
-- **Config / Configuration** : Ansible (playbooks à venir)  
-- **Container / Conteneurisation** : Docker, Docker Compose  
-- **Front** : Streamlit  
-- **ML / Machine Learning** : Python, LightGBM, MLflow, Eurybia  
-- **API** : FastAPI  
-- **Suivi / Monitoring** : MLflow UI  
+ - Infra : Terraform  
+- Cloud: AWS EC2    
+- Container: Docker, Docker Compose  
+- Front: Streamlit  
+- Machine Learning: Python, LightGBM, MLflow, Eurybia  
+- API : FastAPI  
+- Suivi: MLflow UI  
