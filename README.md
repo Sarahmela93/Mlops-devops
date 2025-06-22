@@ -12,20 +12,20 @@
 ## Notre projet:
 
 L’idée est de construire une application complète qui prédit le prix d’une maison en combinant plusieurs technos de DevOps et MLOps.  
-On part d’un dataset CSV puis on entraîne un modèle avec `LightGBM`, on le traque avec `MLflow`, et on expose tout via une API FastAPI.  
+On part d’un dataset CSV puis on entraîne un modèle avec `LightGBM`, on le traque avec `MLflow` et on expose tout via une API FastAPI.  
 Tout est containerisé avec Docker et le déploiement se fait sur AWS grâce à Terraform.
 
 ---
 
 ## Architecture globale
 
-- **Terraform / OpenTofu** : pour créer automatiquement deux machines EC2 (training + API)
+- **Terraform / OpenTofu** : pour créer automatiquement deux machines EC2 
 - **Ansible** : pour les futures config auto 
 - **Docker / Docker Compose** : pour lancer les services facilement
 - **MLflow** : pour suivre l'entraînement, log des metrics, et stockage du modèle
 - **FastAPI** : pour interagir avec le modèle via des endpoints (`/predict`, `/retrain`)
 - **Pandas et LightGBM** : pour l'entraînement
-- **Eurybia** : pour détecter le drift (changement de comportement dans les données)
+- **Eurybia** : pour détecter le changement de comportement dans les données (drift)
 
 ---
 
@@ -58,7 +58,7 @@ GET /retrain
 
 ## Entraînement et MLflow
 On a utilisé MLflow pour suivre les expériences d'entraînement :
-logs des hyperparamètres, métriques (RMSE, MAE, R2), et stockage du modèle dans mlruns/.
+logs des hyperparamètres, métriques (RMSE, MAE, R2) et stockage du modèle dans mlruns/.
 
 On a aussi intégré Eurybia pour détecter si de nouvelles données sont trop différentes de celles du passé.
 
