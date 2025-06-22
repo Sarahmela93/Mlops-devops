@@ -85,8 +85,8 @@ Une pour entraîner le modèle et faire tourner MLflow
 Catégorie et Outils
   Infra	Terraform, AWS EC2
   Config	Ansible
-  Container	Docker, Docker Compose
-  front avec Streamlit
+  Container	Docker, Docker Compose,
+  Front avec Streamlit
   ML	Python, LightGBM, MLflow, Eurybia
   API	FastAPI
   Suivi	MLflow UI
