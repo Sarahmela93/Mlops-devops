@@ -66,10 +66,10 @@ On a aussi intégré Eurybia pour détecter si de nouvelles données sont trop d
 Pré-requis : Avoir Docker installé et lancé sur votre machine.
 
 Cloner le repo avec:
-git clone https://github.com/ajout-de-votre-compte/Mlops-devops-main.git,
+git clone https://github.com/Sarahmela93/Mlops-devops-main.git,
 
 Lancer tous les services avec:
-docker compose up --build
+docker compose -f compose.yml up --build -d
 
 Pour tester l’API :
 Accédez à http://localhost:8000/docs pour utiliser l’interface Swagger auto-générée 
@@ -86,6 +86,7 @@ Catégorie et Outils
   Infra	Terraform, AWS EC2
   Config	Ansible
   Container	Docker, Docker Compose
+  front avec Streamlit
   ML	Python, LightGBM, MLflow, Eurybia
   API	FastAPI
   Suivi	MLflow UI
