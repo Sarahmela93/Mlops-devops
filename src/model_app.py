@@ -24,7 +24,7 @@ st.dataframe(df)
 st.markdown("---")
 
 
-
+# Ask the user to input house details for prediction
 st.markdown("### Predict the price of a house:")
 
 size = st.number_input("Size (in m2)", min_value=0, max_value=1000, value=100)
@@ -46,7 +46,7 @@ st.markdown("---")
 nb_samples = st.number_input(
     "Number of samples", min_value=10, max_value=10000, value=10)
 
-if st.button("Retrain model"):
+if st.button("Retrain model"): # Retrain the model with new ficticious house data to improve predictions
     try:
         request.retrain_request(nb_samples)
         st.write("Model retrained")
@@ -61,11 +61,11 @@ st.write("Here is the evolution of the AUC score of the model:")
 
 if os.path.exists("datadrift_auc_train.csv"):
     drift_df = pd.read_csv("datadrift_auc_train.csv")["auc"]
-    # check last row of drift_df
+    # Check last row of drift_df
     if len(drift_df) != 0 and drift_df.iloc[-1] > 0.5:
         st.warning("Data drift detected")
 
-        if st.button("Reset model"):
+        if st.button("Reset model"): # Delete saved model and synthetic data to reset training from original dataset
             try:
                 os.remove("model.joblib")
                 os.remove("../data/new_houses.csv")
@@ -76,7 +76,8 @@ if os.path.exists("datadrift_auc_train.csv"):
                 st.write("Model reset")
             except:
                 st.write("Error during model reset")
-                
+
+# Show how the model's prediction quality evolved               
 if os.path.exists("datadrift_auc_train.csv"):
     drift_df = pd.read_csv("datadrift_auc_train.csv")[["auc"]]
     st.area_chart(drift_df)

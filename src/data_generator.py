@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 
-def generate_dataframe(n_samples):
+# Simulates new training data by generating fictitious houses
+def generate_dataframe(n_samples): 
     df = pd.read_csv("../data/new_houses.csv")
     size = np.random.randint(low=df['size'].min() / 2, high=3 * df['size'].max() / 2, size=n_samples) + np.random.random()
     nb_rooms = np.random.randint(low=df['nb_rooms'].min() / 2, high=3 * df['nb_rooms'].max() / 2, size=n_samples)

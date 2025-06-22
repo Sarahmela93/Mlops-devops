@@ -9,20 +9,20 @@ from train_model import train_model
 
 app = FastAPI()
 
-
+#  Request for price prediction based on house information
 @app.get("/predict")
 async def predict(size: int, nb_rooms: int, garden: bool, orientation: int):
-    if not os.path.exists("model.joblib"):
+    if not os.path.exists("model.joblib"): # If model not present, re-train with csv data 
         df = pd.read_csv("../data/houses.csv")
         df["orientation"] = df["orientation"].map(
             {"Nord": 0, "Est": 1, "Sud": 2, "Ouest": 3})
         train_model(df)
-    model = joblib.load("model.joblib")
+    model = joblib.load("model.joblib") # Data-driven price prediction
     X = [[size, nb_rooms, garden, orientation]]
     y_pred = model.predict(X)
     return {"y_pred": y_pred[0]}
 
-
+# Re-training with new data for better predictions
 @app.get("/retrain")
 async def retrain(nb_samples: int):
     if not os.path.exists("model.joblib"):

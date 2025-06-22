@@ -17,21 +17,21 @@ logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
 
 
-def eval_metrics(actual, pred):
+def eval_metrics(actual, pred): # Calculate useful metrics to determine whether the model is good or not
     rmse = np.sqrt(mean_squared_error(actual, pred))
     mae = mean_absolute_error(actual, pred)
     r2 = r2_score(actual, pred)
     return rmse, mae, r2
 
 
-def eval_drift(df_current, df_baseline, model):
+def eval_drift(df_current, df_baseline, model): # Avoid quality drop if new data differs too much from the old ones
     sd = SmartDrift(
         df_current=df_current,
         df_baseline=df_baseline,
         deployed_model=model,
         dataset_names={"df_current": "", "df_baseline": ""}
     )
-
+    # Export score in csv
     sd.compile(
         full_validation=False,
         datadrift_file="datadrift_auc_train.csv",
@@ -41,7 +41,7 @@ def eval_drift(df_current, df_baseline, model):
 
 
 def train_model(data):
-    # Split the data into training and test sets. (0.75, 0.25) split.
+    # Split the data into training and test sets
     train, test = train_test_split(data)
 
     # The predicted column is "price"
@@ -80,7 +80,7 @@ def train_model(data):
         mlflow.log_metric("auc", drift)
 
         mlflow.sklearn.log_model(model, "model")
-        joblib.dump(model, "model.joblib")
+        joblib.dump(model, "model.joblib") # To save the model
         if df is None:
             df = data
         else:
