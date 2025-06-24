@@ -56,7 +56,7 @@ Tout est containerisé avec Docker et le déploiement se fait sur AWS grâce à 
 └── requirements.txt
 ```
 
-Le fonctionnement de notre API
+## Le fonctionnement de notre API
 L’API a deux routes principales :
 
 GET /predict
