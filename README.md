@@ -34,6 +34,7 @@ Tout est containerisé avec Docker et le déploiement se fait sur AWS grâce à 
 - **MLflow** : pour suivre l'entraînement, log des metrics, et stockage du modèle
 - **FastAPI** : pour interagir avec le modèle via des endpoints (`/predict`, `/retrain`)
 - **Pandas et LightGBM** : pour l'entraînement
+- **Eurybia** : pour détecter le changement de comportement dans les données (drift)
 
 ---
 
@@ -67,6 +68,9 @@ GET /retrain
 ## Entraînement et MLflow
 On a utilisé MLflow pour suivre les expériences d'entraînement :
 logs des hyperparamètres, métriques (RMSE, MAE, R2) et stockage du modèle dans mlruns/.
+
+On a aussi intégré Eurybia pour détecter si de nouvelles données sont trop différentes de celles du passé.
+
 
 ## Installation
 Cloner le repo avec:
@@ -122,6 +126,6 @@ Une pour entraîner le modèle et faire tourner MLflow
 - Cloud: AWS EC2    
 - Container: Docker, Docker Compose  
 - Front: Streamlit  
-- Machine Learning: Python, LightGBM, MLflow
+- Machine Learning: Python, LightGBM, MLflow, Eurybia  
 - API : FastAPI  
 - Suivi: MLflow UI  
