@@ -16,7 +16,16 @@ On part d’un dataset CSV puis on entraîne un modèle avec `LightGBM`, on le t
 Tout est containerisé avec Docker et le déploiement se fait sur AWS grâce à Terraform.
 
 ---
+## Prérequis
 
+- Terraform (>= 1.0)  
+- Ansible (>= 2.9)  
+- Docker & Docker Compose  
+- Python 3.8+  
+- AWS CLI configuré  
+- certbot (pour SSL)
+
+---
 ## Architecture globale
 
 - **Terraform / OpenTofu** : pour créer automatiquement deux machines EC2 
@@ -62,19 +71,48 @@ logs des hyperparamètres, métriques (RMSE, MAE, R2) et stockage du modèle dan
 
 On a aussi intégré Eurybia pour détecter si de nouvelles données sont trop différentes de celles du passé.
 
-## Lancement du projet en local (avec Docker)
+## Installation
+Cloner le repo avec:
+git clone https://github.com/Sarahmela93/Mlops-devops-main.git
+
+Installer les dépendances Python:
+``` pip install -r requirements.txt ```
+
+## Lancement du projet en local avec Docker
 Pré-requis : Avoir Docker installé et lancé sur votre machine.
 
-Cloner le repo avec:
-git clone https://github.com/Sarahmela93/Mlops-devops-main.git,
-
 Lancer tous les services avec:
-docker compose -f compose.yml up --build -d
+docker-compose up -d --build
+
+Après le demarrage des conteneurs, accedez à:
+
+**Streamlit front-end** : http://localhost:8501
+**MLflow UI** : http://localhost:5000
+**API FastAPI** : http://localhost:8000/docs
+
+Pour stopper les conteneurs:
+``` docker-compose down -v ```
+
+## Entrainement du modèle sans Docker
+```bash
+cd src
+python train_model.py 
+mlflow ui
+uvicorn api:app --reload
+streamlit run model_app.py
+```
+
 
 Pour tester l’API :
 Accédez à http://localhost:8000/docs pour utiliser l’interface Swagger auto-générée 
 
 ## Le déploiement AWS
+```bash
+cd infrastructure/terraform
+terraform init
+terraform apply -auto-approve
+```
+
 On a utilisé Terraform pour déployer 2 instances EC2 :
 
 Une pour héberger l’API
