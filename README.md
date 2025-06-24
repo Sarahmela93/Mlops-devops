@@ -82,13 +82,13 @@ Installer les dépendances Python:
 Pré-requis : Avoir Docker installé et lancé sur votre machine.
 
 Lancer tous les services avec:
-docker-compose up -d --build
+```docker-compose up -d --build```
 
 Après le demarrage des conteneurs, accedez à:
 
-**Streamlit front-end** : http://localhost:8501
-**MLflow UI** : http://localhost:5000
-**API FastAPI** : http://localhost:8000/docs
+**Streamlit front-end** : http://localhost:8501 <br />
+**MLflow UI** : http://localhost:5000 <br />
+**API FastAPI** : http://localhost:8000/docs <br />
 
 Pour stopper les conteneurs:
 ``` docker-compose down -v ```
