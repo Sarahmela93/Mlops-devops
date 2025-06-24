@@ -46,7 +46,7 @@ Tout est containerisé avec Docker et le déploiement se fait sur AWS grâce à 
 │   ├── api/Dockerfile
 │   ├── mlflow/Dockerfile
 │   └── front/Dockerfile
-├── ├── infrastructure/
+├── infrastructure/
 │   └── terraform/
 │       ├── instances.tf
 │       ├── outputs.tf
