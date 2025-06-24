@@ -29,12 +29,11 @@ Tout est containerisé avec Docker et le déploiement se fait sur AWS grâce à 
 ## Architecture globale
 
 - **Terraform / OpenTofu** : pour créer automatiquement deux machines EC2 
-- **Ansible** : pour les futures config auto 
+- **Ansible** : pour les futures configurations automatiques  
 - **Docker / Docker Compose** : pour lancer les services facilement
 - **MLflow** : pour suivre l'entraînement, log des metrics, et stockage du modèle
 - **FastAPI** : pour interagir avec le modèle via des endpoints (`/predict`, `/retrain`)
 - **Pandas et LightGBM** : pour l'entraînement
-- **Eurybia** : pour détecter le changement de comportement dans les données (drift)
 
 ---
 
@@ -69,8 +68,6 @@ GET /retrain
 On a utilisé MLflow pour suivre les expériences d'entraînement :
 logs des hyperparamètres, métriques (RMSE, MAE, R2) et stockage du modèle dans mlruns/.
 
-On a aussi intégré Eurybia pour détecter si de nouvelles données sont trop différentes de celles du passé.
-
 ## Installation
 Cloner le repo avec:
 git clone https://github.com/Sarahmela93/Mlops-devops-main.git
@@ -84,7 +81,7 @@ Pré-requis : Avoir Docker installé et lancé sur votre machine.
 Lancer tous les services avec:
 ```docker-compose up -d --build```
 
-Après le demarrage des conteneurs, accedez à:
+Après le demarrage des conteneurs, accédez à:
 
 **Streamlit front-end** : http://localhost:8501 <br />
 **MLflow UI** : http://localhost:5000 <br />
@@ -121,10 +118,10 @@ Une pour entraîner le modèle et faire tourner MLflow
 
 ## Technologies utilisées
 ### Catégorie et Outils
- - Infra : Terraform  
+- Infra : Terraform  
 - Cloud: AWS EC2    
 - Container: Docker, Docker Compose  
 - Front: Streamlit  
-- Machine Learning: Python, LightGBM, MLflow, Eurybia  
+- Machine Learning: Python, LightGBM, MLflow
 - API : FastAPI  
 - Suivi: MLflow UI  
