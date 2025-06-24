@@ -46,12 +46,21 @@ Tout est containerisé avec Docker et le déploiement se fait sur AWS grâce à 
 │   ├── api/Dockerfile
 │   ├── mlflow/Dockerfile
 │   └── front/Dockerfile
-├── infrastructure/        
+├── ├── infrastructure/
 │   └── terraform/
-├── src/                   
-│   ├── api.py             
-│   ├── data_generator.py  
-│   └── train_model.py     
+│       ├── instances.tf
+│       ├── outputs.tf
+│       ├── provider.tf
+│       ├── security_groups.tf
+│       └── variables.tf
+├── src/
+│   ├── api.py            
+│   ├── data_generator.py 
+│   ├── datadrift_auc_train.csv
+│   ├── model.joblib       
+│   ├── model_app.py        
+│   ├── request.py   
+│   └── train_model.py
 ├── compose.yml            
 └── requirements.txt
 ```
